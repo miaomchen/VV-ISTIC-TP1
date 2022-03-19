@@ -11,3 +11,13 @@
 5.  Shortly after the appearance of WebAssembly another paper proposed a mechanized specification of the language using Isabelle. The paper can be consulted here: https://www.cl.cam.ac.uk/~caw77/papers/mechanising-and-verifying-the-webassembly-specification.pdf. This mechanized specification complements the first formalization attempt from the paper. According to the author of this second paper, what are the main advantages of the mechanized specification? Did it help improving the original formal specification of the language? What other artifacts were derived from this mechanized specification? How did the author verify the specification? Does this new specification removes the need for testing?
 
 ## Answers
+
+
+2. 
+Information about the issue and the solution :
+https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-734?filter=doneissues
+https://github.com/apache/commons-collections/pull/115 
+
+The bug is local. The bug exists in the method EntryIterator.remove() in Flat3Map java class, where the order of calling two methods is inverse, which results in the call of EntryIterator.remove() method generating an IllegalStateException. The solution is calling the method currentEntry.getKey() before the method currentEntry.setRemoved(true).
+A new test testEntrySet() was added to ensure that the bug is detected if it reappears in the future.
+
