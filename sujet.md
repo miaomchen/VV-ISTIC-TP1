@@ -20,3 +20,13 @@ The solution : https://github.com/apache/commons-collections/pull/115
 The bug is local. The bug exists in the method EntryIterator.remove() in Flat3Map java class, where the order of calling two methods is inverse, which results in the call of EntryIterator.remove() method generating an IllegalStateException. The solution is calling the method currentEntry.getKey() before the method currentEntry.setRemoved(true).
 A new test testEntrySet() was added to ensure that the bug is detected if it reappears in the future.
 
+
+3.
+
+Ils ont identifié les quatre principes définissant le chaos engineering notamment une hypothèse sur le comportement en régime permanent, la variation des évènements du monde réel, l’exécution des expériences en production et leur automatisation. 
+
+Le SPS((Stream) start per second) a été utilisé comme métrique caractérisant le comportement en régime permanent du système. Comme variation des évènements du monde réel, ils ont utilisé un certain nombre comme par exemple l’arrêt d’instances de machines virtuelles, l’injection d’une latence dans les demandes entre services, l’échec de requêtes entre services et l’indisponibilité des services dans une région entière. 
+Ces expériences se font sur un certain nombre d’utilisateurs qui constitueront le groupe expérimental. Il y’a en parallèle un autre groupe de contrôle qui n’est soumis à aucune défaillance. Le SPS, considéré au départ comme étant équivalent dans les 2 groupes, est mesuré à la fin dans chacun des groupes.En fonction des résultats obtenus, on peut comprendre le comportement du système lors d'une certaine défaillance.
+
+ Netflix n’est pas la seule entreprise à effectuer ces expériences. On a Amazon, Google, Microsoft et Facebook qui les font aussi.  Ces entreprises peuvent adapter ces expériences en fonction de leurs besoins, de leur infrastructure. 
+
