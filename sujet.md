@@ -14,9 +14,8 @@
 
 
 2. 
-Information about the issue and the solution :
-https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-734?filter=doneissues
-https://github.com/apache/commons-collections/pull/115 
+The issue : https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-734?filter=doneissues
+The solution : https://github.com/apache/commons-collections/pull/115 
 
 The bug is local. The bug exists in the method EntryIterator.remove() in Flat3Map java class, where the order of calling two methods is inverse, which results in the call of EntryIterator.remove() method generating an IllegalStateException. The solution is calling the method currentEntry.getKey() before the method currentEntry.setRemoved(true).
 A new test testEntrySet() was added to ensure that the bug is detected if it reappears in the future.
