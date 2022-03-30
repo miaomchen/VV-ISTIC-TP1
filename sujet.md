@@ -13,15 +13,29 @@
 ## Answers
 
 
-2. 
-The issue : https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-734?filter=doneissues
-The solution : https://github.com/apache/commons-collections/pull/115 
+### 2. 
+[The issue](https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-734?filter=doneissues) : The code will generate an IllegalStateException.
+The reason for this problem is that there is a problem with the EntryIterator.remove() method in the Flat3Map java class.
+```
+public void testEntrySet() {
+        final Flat3Map<Integer, String> map = new Flat3Map<>();
+        map.put(1, "A");
+        map.put(2, "B");
+        map.put(3, "C");
+        Iterator<Map.Entry<Integer, String>> it = map.entrySet().iterator();        Map.Entry<Integer, String> mapEntry1 = it.next();
+        Map.Entry<Integer, String> mapEntry2 = it.next();
+        Map.Entry<Integer, String> mapEntry3 = it.next();
+        it.remove();        assertEquals(2, map.size());
+    }
+```
+
+[The solution](https://github.com/apache/commons-collections/pull/115): In EntryIterator.remove() method, it should call currentEntry.getKey() first, then call currentEntry.setRemoved(true).
+
 
 The bug is local. The bug exists in the method EntryIterator.remove() in Flat3Map java class, where the order of calling two methods is inverse, which results in the call of EntryIterator.remove() method generating an IllegalStateException. The solution is calling the method currentEntry.getKey() before the method currentEntry.setRemoved(true).
 A new test testEntrySet() was added to ensure that the bug is detected if it reappears in the future.
 
-
-3.
+### 3.
 
 Ils ont identifié les quatre principes définissant le chaos engineering notamment une hypothèse sur le comportement en régime permanent, la variation des évènements du monde réel, l’exécution des expériences en production et leur automatisation. 
 
@@ -29,4 +43,13 @@ Le SPS((Stream) start per second) a été utilisé comme métrique caractérisan
 Ces expériences se font sur un certain nombre d’utilisateurs qui constitueront le groupe expérimental. Il y’a en parallèle un autre groupe de contrôle qui n’est soumis à aucune défaillance. Le SPS, considéré au départ comme étant équivalent dans les 2 groupes, est mesuré à la fin dans chacun des groupes.En fonction des résultats obtenus, on peut comprendre le comportement du système lors d'une certaine défaillance.
 
  Netflix n’est pas la seule entreprise à effectuer ces expériences. On a Amazon, Google, Microsoft et Facebook qui les font aussi.  Ces entreprises peuvent adapter ces expériences en fonction de leurs besoins, de leur infrastructure. 
+ 
+ ### 4.
+The main advantages of having a formal specification for WebAssembly are :
+- safe to execute: Code must be validated to be executed safely. Validation rules are defined as a type system which has standard soundness properties.
+- fast to execute: WebAssembly uses binary format which allows a browser engine to minimize page-load latency and parallelize compilation of consecutive function bodies.
+- deterministic and easy to reason about: The deterministic semantics is given to corner cases such as out-of-range shifts across all hardware with only minimal execution overhead.
+- simple interoperability with the Web platform: For embedding a WebAssembly implementation into an execution environment, it is the embedder who defines how modules are loaded, how imports and exports between modules are resolved, provides foreign functions to accomplish I/O and timers, and specifies how WebAssembly traps are handled.
+
+In my opinion, it does not mean that WebAssembly implementations should not be tested because the specification itself should be checked and verified.
 
