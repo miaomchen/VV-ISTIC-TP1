@@ -30,6 +30,18 @@ public void testEntrySet() {
 ```
 
 [The solution](https://github.com/apache/commons-collections/pull/115): In EntryIterator.remove() method, it should call currentEntry.getKey() first, then call currentEntry.setRemoved(true).
+```
+       if (currentEntry == null) {
+                throw new IllegalStateException(AbstractHashedMap.REMOVE_INVALID);
+            }
+            
+            parent.remove(currentEntry.getKey());
+            currentEntry.setRemoved(true);
+            
+            nextIndex--;
+            currentEntry = null;
+        }
+```
 
 
 The bug is local. The bug exists in the method EntryIterator.remove() in Flat3Map java class, where the order of calling two methods is inverse, which results in the call of EntryIterator.remove() method generating an IllegalStateException. The solution is calling the method currentEntry.getKey() before the method currentEntry.setRemoved(true).
