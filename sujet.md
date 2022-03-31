@@ -79,3 +79,25 @@ The main advantages of having a formal specification for WebAssembly are :
 
 In my opinion, it does not mean that WebAssembly implementations should not be tested because the specification itself should be checked and verified.
 
+### 5.
+According to the author of this second paper, what are the main advantages of the mechanized specification? Did it help improving the original formal specification of the language? What other artifacts were derived from this mechanized specification? How did the author verify the specification? Does this new specification removes the need for testing?
+
+- The main advantages of the mechanized specification:
+For the semantics of WebAssembly, the mechanized specification defines 65 reduction rules. A cleaner interface is provided for code extraction and host function behaviours that the original specification did not support are implemented. 
+Concerning the model, the mechanisation adheres as strictly as possible to the ideals of "eyeball closeness". 
+
+- Did it help improving the original formal specification of the language?
+
+Yes, il helped improving the original formal specification of the language. The mechanized specification which models the mechanism by which a WebAssembly implementation interfaces with its host environment exposes a deficiency in the WebAssembly specification that undermined the soundness of the type system.
+
+- What other artifacts were derived from this mechanized specification? 
+
+The other artifacts derived from this mechanized specification are a separate verified executable inter oreter and type checker.
+
+- How did the author verify the specification?
+The specification is verified with their core proofs of correctness which uses their executable interpreter, both by using the official WebAssembly conformance test suite, and by conducting fuzzing experiments.
+
+- Does this new specification removes the need for testing?
+No, this new specification does not remove the need for testing because this new specification can reveal some deficiencies in the old specification but not all of them.
+
+
