@@ -12,6 +12,20 @@
 
 ## Answers
 
+### 1.
+
+#### Le bug d’Ariane 5 
+
+
+Le 4 Juin 1996, le vol de la fusée Ariane 5 (vol inaugural) n'a duré que 37 secondes environ avant qu’elle ne quitte sa trajectoire et n'explose. La panne a été causée par la perte totale des informations de guidage 37 secondes après le début de la séquence d'allumage du moteur principal. Cette perte d'informations était due à des erreurs de spécification et de conception dans le logiciel du système de référence inertielle (SRI) . En effet, à une altitude d’environ 3500 m, une opération de conversion ( flottants 64 bits  vers entiers 16 bits) n’a pas pu être faite car la valeur entière de l’accélération horizontale de la fusée étant 5 fois plus forte que pour Ariane 4 excédait ce que peut exprimer un nombre entier à 16 bits. Ces instructions n’étaient pas protégées. Cette mauvaise conversion a alors provoqué l’envoi de signaux incorrects de déviation de la commande des tuyères des moteurs d’Ariane 5 ce qui a entrainé une augmentation de l’angle d’attaque et des charges hydrodynamiques sur la structure et par conséquent la séparation du booster puis l’autodestruction de la fusée.
+
+Ce bug a entrainé une perte de 7 milliards de dollars pour dix ans de développement et une cargaison évaluée à 500 millions de dollars.
+
+Les tests au niveau du SRI ont été menés de manière rigoureuse en tenant compte de tous les facteurs environnementaux. Mais, aucun test n'a été effectué pour vérifier que le SRI se comporterait correctement lorsqu'il serait soumis à la séquence de décompte et de temps de vol et à la trajectoire d'Ariane 5. Si un tel test avait été effectué, le mécanisme de défaillance aurait été exposé.
+
+Tirée de _ARIANE 5, Flight 501 Failure, 1996_
+
+
 
 ### 2. 
 [The issue](https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-734?filter=doneissues) : The code will generate an IllegalStateException.
