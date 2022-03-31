@@ -23,7 +23,7 @@ Ce bug a entrainé une perte de 7 milliards de dollars pour dix ans de développ
 
 Les tests au niveau du SRI ont été menés de manière rigoureuse en tenant compte de tous les facteurs environnementaux. Mais, aucun test n'a été effectué pour vérifier que le SRI se comporterait correctement lorsqu'il serait soumis à la séquence de décompte et de temps de vol et à la trajectoire d'Ariane 5. Si un tel test avait été effectué, le mécanisme de défaillance aurait été exposé.
 
-Tirée de _ARIANE 5, Flight 501 Failure, 1996_
+_Tirée de_ : [ARIANE 5, Flight 501 Failure,1996](https://www.csm.ornl.gov/~sheldon/cs422/ariane5fr.html)
 
 
 
